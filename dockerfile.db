@@ -1,0 +1,17 @@
+# Используем официальное изображение PostgreSQL
+FROM postgres:14
+
+# Задаем переменную окружения для пароля суперпользователя PostgreSQL
+ENV POSTGRES_PASSWORD=your_password
+
+# Задаем переменную окружения для имени базы данных
+ENV POSTGRES_DB=your_database
+
+# Задаем переменную окружения для имени пользователя
+ENV POSTGRES_USER=your_user
+
+# Копируем скрипты для инициализации (если есть)
+COPY init-db.sql /docker-entrypoint-initdb.d/
+
+EXPOSE 5432
+

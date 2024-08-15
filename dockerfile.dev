@@ -1,0 +1,23 @@
+# Используем официальное изображение Node.js LTS
+FROM node:18
+
+# Устанавливаем рабочую директорию
+WORKDIR /usr/src/app
+
+# Копируем package.json и package-lock.json
+COPY package*.json ./
+
+# Устанавливаем зависимости
+RUN npm install
+
+# Устанавливаем nodemon для разработки
+RUN npm install -g nodemon
+
+# Копируем исходный код проекта
+COPY . .
+
+# Открываем порт 3000 для доступа
+EXPOSE 3000
+
+# Определяем команду для разработки
+CMD ["npm", "run", "start:dev"]
